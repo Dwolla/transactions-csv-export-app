@@ -6,20 +6,23 @@ const App = () => {
   const [customerId, setCustomerId] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [transactions, setTransactions] = useState([]);
 
   const onSubmit = e => {
     e.preventDefault();
 
     const body = {};
 
+    // List of params that can be added to body when present
     const params = {
       clientId,
       clientSecret,
       customerId,
       startDate,
-      endDate,
+      endDate
     };
 
+    // dynamically add params to request body
     for (const param in params) {
       if (params[param]) {
         body[param] = params[param];
@@ -31,9 +34,9 @@ const App = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     })
       .then(res => res.json())
       .then(data => console.log(data));
@@ -78,6 +81,7 @@ const App = () => {
         />
         <button type='submit'>Submit</button>
       </form>
+      {transactions.length > 0 ? <h1>Stuff</h1> : <h1>No transactions</h1>}
     </div>
   );
 };

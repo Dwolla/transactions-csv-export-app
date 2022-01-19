@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "==2.0"
 flask-cors = "*"
+dwollav2 = "*"
 
 [dev-packages]
 autopep8 = "*"
