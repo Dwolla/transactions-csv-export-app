@@ -1,8 +1,11 @@
 const Transaction = ({ transaction }) => {
   return (
-    <div>
-      <h1>Transaction</h1>
-    </div>
+    <tr>
+      <th>{transaction.id}</th>
+      <th>{transaction.created}</th>
+      <th>{transaction.status}</th>
+      <th>{transaction.amount.value}</th>
+    </tr>
   );
 };
 
