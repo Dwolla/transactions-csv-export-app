@@ -9,9 +9,9 @@ CORS(app)
 @app.route('/', methods=['post'])
 def get_customer_transactions():
     client = dwollav2.Client(
-        key = request.json['clientId'],
-        secret = request.json['clientSecret'],
-        environment = 'sandbox'
+        key=request.json['clientId'],
+        secret=request.json['clientSecret'],
+        environment='sandbox'
     )
 
     # Get token for client. If getting the token throws
@@ -20,16 +20,17 @@ def get_customer_transactions():
     try:
         token = client.Auth.client()
     except:
-        return {'err': 'bad client'}
+        return {'err': 'Client ID or Client Secret is invalid'}
 
-    if 'startDate' in request.json:
-        print('has start date')
+    print(request.json)
 
     url = f'customers/{request.json["customerId"]}/transfers'
 
     # Note: can use dict for params
     # TODO: Add dict to README for dwolla v2
-    res = token.get(url)
-    print(res.body)
+    try:
+        res = token.get(url)
+    except:
+        return {'err': 'Requested resource not found'}
 
     return {'body': res.body}

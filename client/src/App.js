@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TransactionsTable from './TransactionsTable';
 
 const App = () => {
   const [clientId, setClientId] = useState('');
@@ -7,6 +8,7 @@ const App = () => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [transactions, setTransactions] = useState([]);
+  const [error, setError] = useState('');
 
   const onSubmit = e => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const App = () => {
       clientSecret,
       customerId,
       startDate,
-      endDate
+      endDate,
     };
 
     // dynamically add params to request body
@@ -34,16 +36,23 @@ const App = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json'
+        Accept: 'application/json',
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     })
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => {
+        if ('err' in data) {
+          setError(data['err']);
+        } else {
+          setTransactions(data['body']['_embedded']['transfers']);
+        }
+      });
   };
 
   return (
     <div className='App'>
+      {error && <h3>{error}</h3>}
       <h2>Customer Transaction Report</h2>
       <form onSubmit={onSubmit}>
         <input
@@ -81,7 +90,11 @@ const App = () => {
         />
         <button type='submit'>Submit</button>
       </form>
-      {transactions.length > 0 ? <h1>Stuff</h1> : <h1>No transactions</h1>}
+      {transactions.length > 0 ? (
+        <TransactionsTable transactions={transactions} />
+      ) : (
+        <h1>No transactions</h1>
+      )}
     </div>
   );
 };
