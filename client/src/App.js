@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import TransactionsTable from './TransactionsTable';
 
 const App = () => {
   const [clientId, setClientId] = useState('');
@@ -91,11 +90,6 @@ const App = () => {
         />
         <button type='submit'>Submit</button>
       </form>
-      {transactions.length > 0 ? (
-        <TransactionsTable transactions={transactions} />
-      ) : (
-        <h1>No transactions</h1>
-      )}
     </div>
   );
 };
