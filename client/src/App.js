@@ -13,6 +13,7 @@ const App = () => {
   const onSubmit = e => {
     e.preventDefault();
 
+    setTransactions([]);
     const body = {};
 
     // List of params that can be added to body when present
@@ -21,7 +22,7 @@ const App = () => {
       clientSecret,
       customerId,
       startDate,
-      endDate,
+      endDate
     };
 
     // dynamically add params to request body
@@ -36,9 +37,9 @@ const App = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     })
       .then(res => res.json())
       .then(data => {
