@@ -28,23 +28,33 @@ def get_customer_transactions():
     url = f'customers/{request.json["customerId"]}/transfers'
 
     params = request.json
-    print(params)
     params.pop('clientId')
     params.pop('clientSecret')
     params.pop('customerId')
-    print(params)
 
     # Note: can use dict for params
     # TODO: Add dict to README for dwolla v2
     try:
         res = token.get(url, params)
+        transfers = res.body['_embedded']['transfers']
+        transactions = []
+
+        for transfer in transfers:
+            obj = {}
+            obj['ID'] = transfer['id']
+            obj['Created'] = transfer['created']
+            obj['Status'] = transfer['status']
+            obj['Amount'] = transfer['amount']['value']
+            transactions.append(obj)
     except:
         return {'err': 'Requested resource not found'}
 
-    fields = ['ID', 'Created At', 'Status', 'Amount']
+    fields = ['ID', 'Created', 'Status', 'Amount']
 
+    # NOTE: Pass in an array of objects to convert to CSV
     with open('transactions.csv', 'w') as f:
         writer = csv.DictWriter(f, fields)
         writer.writeheader()
+        writer.writerows(transactions)
 
     return {'body': res.body}
