@@ -1,7 +1,8 @@
 import csv
+import os
 
 import dwollav2
-from flask import Flask, request, send_from_directory
+from flask import Flask, request, send_file
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -52,9 +53,13 @@ def get_customer_transactions():
     fields = ['ID', 'Created', 'Status', 'Amount']
 
     # NOTE: Pass in an array of objects to convert to CSV
-    with open('transactions.csv', 'w') as f:
+    with open('files/transactions.csv', 'w') as f:
         writer = csv.DictWriter(f, fields)
         writer.writeheader()
         writer.writerows(transactions)
 
-    return {'body': res.body}
+    csv_dir  = "./files"
+    csv_file = 'transactions.csv'
+    csv_path = os.path.join(csv_dir, csv_file)
+
+    return send_file(csv_path, as_attachment=True, attachment_filename=csv_file)

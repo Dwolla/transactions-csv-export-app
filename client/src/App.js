@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CSVLink, CSVDownload } from 'react-csv';
 
 const App = () => {
   const [clientId, setClientId] = useState('');
@@ -6,13 +7,12 @@ const App = () => {
   const [customerId, setCustomerId] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [transactions, setTransactions] = useState([]);
+  const [csv, setCsv] = useState('');
   const [error, setError] = useState('');
 
   const onSubmit = e => {
     e.preventDefault();
 
-    setTransactions([]);
     const body = {};
 
     // List of params that can be added to body when present
@@ -36,16 +36,16 @@ const App = () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json'
+        Accept: 'text/csv'
       },
       body: JSON.stringify(body)
     })
-      .then(res => res.json())
+      .then(res => res.text())
       .then(data => {
-        if ('err' in data) {
+        if (data['err']) {
           setError(data['err']);
         } else {
-          setTransactions(data['body']['_embedded']['transfers']);
+          setCsv(data);
         }
       });
   };
@@ -90,6 +90,8 @@ const App = () => {
         />
         <button type='submit'>Submit</button>
       </form>
+
+      <CSVLink data={csv}>Download me</CSVLink>
     </div>
   );
 };
