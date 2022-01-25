@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CSVLink, CSVDownload } from 'react-csv';
+import { CSVLink } from 'react-csv';
 
 const App = () => {
   const [clientId, setClientId] = useState('');
