@@ -91,7 +91,7 @@ const App = () => {
         <button type='submit'>Submit</button>
       </form>
 
-      <CSVLink data={csv}>Download me</CSVLink>
+      {csv && <CSVLink data={csv}>Download CSV</CSVLink>}
     </div>
   );
 };
