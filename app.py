@@ -1,5 +1,6 @@
 import csv
 import os
+from time import sleep
 
 import dwollav2
 from flask import Flask, request, send_file
@@ -47,6 +48,19 @@ def get_customer_transactions():
             obj['Status'] = transfer['status']
             obj['Amount'] = transfer['amount']['value']
             transactions.append(obj)
+
+        while 'next' in res.body['_links']:
+            res = token.get(res.body['_links']['next']['href'], params)
+            transfers = res.body['_embedded']['transfers']
+            for transfer in transfers:
+                obj = {}
+                obj['ID'] = transfer['id']
+                obj['Created'] = transfer['created']
+                obj['Status'] = transfer['status']
+                obj['Amount'] = transfer['amount']['value']
+                transactions.append(obj)
+
+            sleep(1)
     except:
         return {'err': 'Requested resource not found'}
 
