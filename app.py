@@ -33,6 +33,7 @@ def get_customer_transactions():
     params.pop('clientId')
     params.pop('clientSecret')
     params.pop('customerId')
+    params['limit'] = 200
 
     # Note: can use dict for params
     # TODO: Add dict to README for dwolla v2
@@ -59,7 +60,6 @@ def get_customer_transactions():
                 obj['Status'] = transfer['status']
                 obj['Amount'] = transfer['amount']['value']
                 transactions.append(obj)
-
             sleep(1)
     except:
         return {'err': 'Requested resource not found'}
