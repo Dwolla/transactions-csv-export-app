@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
+import Form from './Form';
 
 const App = () => {
   const [clientId, setClientId] = useState('');
@@ -51,47 +52,74 @@ const App = () => {
   };
 
   return (
-    <div className='App'>
-      {error && <h3>{error}</h3>}
-      <h2>Customer Transaction Report</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type='password'
-          placeholder='Client ID'
-          value={clientId}
-          onChange={e => setClientId(e.target.value)}
-          required
-        />
-        <input
-          type='password'
-          placeholder='Client secret'
-          value={clientSecret}
-          onChange={e => setClientSecret(e.target.value)}
-          required
-        />
-        <input
-          type='text'
-          placeholder='Customer ID'
-          value={customerId}
-          onChange={e => setCustomerId(e.target.value)}
-          required
-        />
-        <input
-          type='text'
-          placeholder='Start date: YYYY-MM-DD'
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
-        <input
-          type='text'
-          placeholder='End date: YYYY-MM-DD'
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
-        <button type='submit'>Submit</button>
-      </form>
-
-      {csv && <CSVLink data={csv}>Download CSV</CSVLink>}
+    <div className='App flex flex-col w-1/4'>
+      <div className='grid place-items-center h-screen'>
+        <div>
+          {error && <h3>{error}</h3>}
+          <h2 className='font-bold text-xl'>
+            Customer Transaction Report
+          </h2>
+        </div>
+        <div className='border border-blue-500 rounded-xl p-14'>
+          <form onSubmit={onSubmit}>
+            <label htmlFor='clientId'>Client ID</label>
+            <input
+              type='password'
+              placeholder='**********************'
+              id='clientId'
+              value={clientId}
+              onChange={e => setClientId(e.target.value)}
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+              required
+            />
+            <label htmlFor='clientSecret'>Client secret</label>
+            <input
+              type='password'
+              id='clientSecret'
+              placeholder='**********************'
+              value={clientSecret}
+              onChange={e => setClientSecret(e.target.value)}
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+              required
+            />
+            <label htmlFor='customerId'>Customer ID</label>
+            <input
+              type='text'
+              placeholder='Customer ID'
+              id='customerId'
+              value={customerId}
+              onChange={e => setCustomerId(e.target.value)}
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+              required
+            />
+            <label htmlFor='startDate'>Start date</label>
+            <input
+              type='text'
+              placeholder='YYYY-MM-DD'
+              id='startDate'
+              value={startDate}
+              onChange={e => setStartDate(e.target.value)}
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+            />
+            <label htmlFor='endDate'>End date</label>
+            <input
+              type='text'
+              placeholder='YYYY-MM-DD'
+              id='endDate'
+              value={endDate}
+              onChange={e => setEndDate(e.target.value)}
+              className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+            />
+            <button
+              type='submit'
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        {csv && <CSVLink data={csv}>Download CSV</CSVLink>}
+      </div>
     </div>
   );
 };
