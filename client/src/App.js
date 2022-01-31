@@ -7,6 +7,8 @@ const App = () => {
   const [customerId, setCustomerId] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [startAmount, setStartAmount] = useState('');
+  const [endAmount, setEndAmount] = useState('');
   const [csv, setCsv] = useState('');
   const [error, setError] = useState('');
 
@@ -24,7 +26,9 @@ const App = () => {
       clientSecret,
       customerId,
       startDate,
-      endDate
+      endDate,
+      startAmount,
+      endAmount
     };
 
     // dynamically add params to request body
@@ -117,6 +121,24 @@ const App = () => {
                 id='endDate'
                 value={endDate}
                 onChange={e => setEndDate(e.target.value)}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+              />
+              <label htmlFor='startAmount'>Start amount</label>
+              <input
+                type='text'
+                placeholder='Minimum transaction value: ex. 500'
+                id='startAmount'
+                value={startAmount}
+                onChange={e => setStartAmount(e.target.value)}
+                className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
+              />
+              <label htmlFor='endAmount'>End amount</label>
+              <input
+                type='text'
+                placeholder='Maximum transaction value: ex. 1000'
+                id='endAmount'
+                value={endAmount}
+                onChange={e => setEndAmount(e.target.value)}
                 className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-1 focus:shadow-outline mb-6'
               />
               <button
