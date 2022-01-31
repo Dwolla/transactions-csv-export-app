@@ -18,6 +18,7 @@ parameters such as `startDate`, `endDate`, and `amount`.
 - In the root directory, run `pipenv install` to install pip dependencies.
 - Optionally in the root directory run `pipenv install --dev` to intall pip development dependencies.
 - `cd` into the `client` directory and run `npm install` to install the npm packages for the react client.
+- In the root directory, create a folder named `files`. This is where transaction report CSV files will be saved.
 - 2 servers need to run simultaneously: one for the react client, and one for the flask backend.
   - To run the flask server, make sure you are in the root directory and run `flask run`
   - To run the react client, in a seperate terminal `cd` into the `client` directory and run `npm start`
@@ -29,3 +30,7 @@ Contributions to the project are welcome via pull requests!
 ## License
 
 This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Disclaimer
+
+This project is meant to serve as an educational tool only that helps you understand how to implement a Dwolla concept.
