@@ -19,6 +19,8 @@ parameters such as `startDate`, `endDate`, and `amount`.
 - Optionally in the root directory run `pipenv install --dev` to intall pip development dependencies.
 - `cd` into the `client` directory and run `npm install` to install the npm packages for the react client.
 - In the root directory, create a folder named `files`. This is where transaction report CSV files will be saved.
+- In the `client` directory create a `.env` file. The following is a list of enviornment variables:
+  - REACT_APP_FLASK_BASE_URL
 - 2 servers need to run simultaneously: one for the react client, and one for the flask backend.
   - To run the flask server, make sure you are in the root directory and run `flask run`
   - To run the react client, in a seperate terminal `cd` into the `client` directory and run `npm start`

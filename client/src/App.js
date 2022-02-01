@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
 
+const { REACT_APP_FLASK_BASE_URL } = process.env;
+
 const App = () => {
   const [clientId, setClientId] = useState('');
   const [clientSecret, setClientSecret] = useState('');
@@ -39,7 +41,7 @@ const App = () => {
     }
 
     // Fetch request goes here
-    fetch('http://127.0.0.1:5000', {
+    fetch(REACT_APP_FLASK_BASE_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
