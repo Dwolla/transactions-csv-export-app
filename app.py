@@ -36,23 +36,11 @@ def get_customer_transactions():
     params['limit'] = 200
 
     # Note: can use dict for params
-    # TODO: Add dict to README for dwolla v2
     try:
         res = token.get(url, params)
         transfers = res.body['_embedded']['transfers']
         transactions = []
-
-        for transfer in transfers:
-            obj = {}
-            obj['ID'] = transfer['id']
-            obj['Created'] = transfer['created']
-            obj['Status'] = transfer['status']
-            obj['Amount'] = transfer['amount']['value']
-            transactions.append(obj)
-
-        while 'next' in res.body['_links']:
-            res = token.get(res.body['_links']['next']['href'], params)
-            transfers = res.body['_embedded']['transfers']
+        while True:
             for transfer in transfers:
                 obj = {}
                 obj['ID'] = transfer['id']
@@ -60,7 +48,12 @@ def get_customer_transactions():
                 obj['Status'] = transfer['status']
                 obj['Amount'] = transfer['amount']['value']
                 transactions.append(obj)
-            sleep(1)
+
+            if not 'next' in res.body['_links']:
+                break
+
+            res = token.get(res.body['_links']['next']['href'])
+            transfers = res.body['_embedded']['transfers']
     except:
         return {'err': 'Requested resource not found'}
 
