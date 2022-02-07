@@ -3,12 +3,12 @@ import csv
 import dwollav2
 
 client = dwollav2.Client(
-    key='qLsqWAJZ08YPx4K5RZdKokLaq0oPU2mxEs1wYHuXB5n2QybXdm',
-    secret='GWv4tsgHqgwwDsIo4VYFz5i2kTtwckdxyVB1ZTuWGJZWC0AxpI',
+    key='REPLACE WITH CLIENT ID',
+    secret='REPLACE WITH SECRET KEY',
     environment='sandbox' # Set to sandbox, change to production if needed
 )
 
-customer_id = 'cb20de8e-e7e5-4108-8f1e-e76ef0950a21'
+customer_id = 'REPLACE WITH CUSTOMER ID'
 
 # Gets a token from the client object
 token = client.Auth.client()
