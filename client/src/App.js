@@ -65,7 +65,7 @@ const App = () => {
 
   return (
     <>
-      <div className='App flex flex-col min-h-screen flex items-center justify-center'>
+      <div className='App flex flex-col min-h-screen flex items-center justify-center font-roboto'>
         <div className='grid place-items-center'>
           <div>
             <h2 className='font-bold text-xl'>Customer Transaction Report</h2>
@@ -75,7 +75,7 @@ const App = () => {
               </h3>
             )}
           </div>
-          <div className='border border-blue-500 rounded-xl p-14 mt-5'>
+          <div className='border border-dwolla-primaryPurple rounded-xl p-14 mt-5'>
             <form onSubmit={onSubmit}>
               <label htmlFor='clientId'>Client ID</label>
               <input
@@ -145,7 +145,7 @@ const App = () => {
               />
               <button
                 type='submit'
-                className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                className='bg-dwolla-primaryPurple hover:bg-dwolla-purpleTint5 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               >
                 Submit
               </button>
