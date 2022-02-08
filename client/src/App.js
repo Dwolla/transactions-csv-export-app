@@ -153,7 +153,7 @@ const App = () => {
           </div>
           {csv && (
             <CSVLink
-              className='border bg-blue-500 mt-3 p-4 text-white rounded'
+              className='border bg-dwolla-primaryPurple hover:bg-dwolla-purpleTint5 mt-3 p-4 text-white rounded'
               data={csv}
             >
               Download CSV
