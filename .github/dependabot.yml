@@ -10,3 +10,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+      
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/client" # Location of package manifests
+    schedule:
+      interval: "daily"
