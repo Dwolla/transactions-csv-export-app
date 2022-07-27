@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Dwolla transaction reports is a small app that allows clients to get
-transactions for a specific customer. The app supports filtering by certian
+transactions for a specific customer. The app supports filtering by certain
 parameters such as `startDate`, `endDate`, and `amount`.
 
 ## Requirements
@@ -16,14 +16,14 @@ parameters such as `startDate`, `endDate`, and `amount`.
 
 - Clone this repository
 - In the root directory, run `pipenv install` to install pip dependencies.
-- Optionally in the root directory run `pipenv install --dev` to intall pip development dependencies.
+- Optionally in the root directory run `pipenv install --dev` to install pip development dependencies.
 - `cd` into the `client` directory and run `npm install` to install the npm packages for the react client.
 - In the root directory, create a folder named `files`. This is where transaction report CSV files will be saved.
 - In the `client` directory create a `.env` file. The following is a list of enviornment variables:
   - REACT_APP_FLASK_BASE_URL
 - 2 servers need to run simultaneously: one for the react client, and one for the flask backend.
   - To run the flask server, make sure you are in the root directory and run `flask run`
-  - To run the react client, in a seperate terminal `cd` into the `client` directory and run `npm start`
+  - To run the react client, in a separate terminal `cd` into the `client` directory and run `npm start`
 
 ## Contribution
 
